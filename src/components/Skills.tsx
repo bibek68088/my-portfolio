@@ -16,7 +16,7 @@ const Skills = () => {
         </div>
         <div className="flex flex-wrap justify-between">
           {skills.map((skill) => (
-            <div key={skill.title} className="w-full md:w-1/2 lg:w-[45%] mb-4">
+            <div key={skill.title} className="w-full lg:w-[45%] mb-4">
               <div className="flex justify-between mb-1">
                 <span className="text-lg font-roboto font-medium text-black dark:text-white">
                   {skill.title}
@@ -33,6 +33,9 @@ const Skills = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex justify-center p-20">
+          <button className="border-2 border-black font-poppins font-medium hover:bg-gray-500 hover:text-white ease-in-out 2xl:p-4 xl:p-6 lg:p-4 p-2 shadow-xl ">Download CV</button>
         </div>
       </div>
     </section>

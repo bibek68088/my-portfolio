@@ -6,7 +6,7 @@ const Projects = () => {
     <section id="projects" className="text-black bg-white body-font">
       <div className="container px-5 py-10 mx-auto text-center lg:px-40">
         <div className="flex flex-col w-full mb-20">
-          <h1 className="sm:text-4xl lg:text-5xl font-poppins font-medium title-font mb-4 text-black">
+          <h1 className="lg:text-5xl text-3xl font-poppins font-medium title-font mb-4 text-black">
             Some of my most recent projects
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed font-roboto text-base">

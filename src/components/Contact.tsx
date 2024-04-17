@@ -50,10 +50,10 @@ const Contact = () => {
   return (
     <section id="contact" className="relative bg-yellow-300">
       <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap font-roboto">
-        <div className="container lg:w-2/5 p-10 ">
+        <div className="container lg:w-2/5 lg:p-10 ">
           <div className="lg:text-4xl text-2xl font-bold pb-4">Let's get in touch</div>
           <div className="pb-10 flex flex-col">
-            <div className="lg:text-2xl text-justify">
+            <div className="lg:text-2xl md:w-3/4 lg:w-full text-justify">
               I enjoy discussing new projects and design challlenges. Please
               share as much info, as possible so we can get the most out of our
               first catch-up
@@ -97,7 +97,7 @@ const Contact = () => {
         </div>
         <form
           name="contact"
-          className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0"
+          className="lg:w-1/3 md:w-2/3 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0"
         >
           <h2 className="text-black sm:text-4xl text-3xl mb-1 font-medium title-font">
             Hire Me

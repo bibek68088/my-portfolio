@@ -1,5 +1,3 @@
-import { Progress } from "antd";
-
 export const projects = [
   {
     title: "React Reserve",
@@ -74,16 +72,22 @@ export const testimonials = [
   {
     quote:
       "Working with Bibek was a fantastic experience! They not only grasped our brand vision effortlessly but also translated it into a beautifully designed and functional website. Their attention to detail and responsiveness made the entire process seamless. I highly recommend Bibek for anyone looking for a skilled and reliable web developer.",
-    image: "./cat2.jpg",
-    name: "Lalisa Manobal",
-    company: "ABC Inc.",
+    image: "./tony.jpg",
+    name: "Tony Stark",
+    company: "Ironman of Avengers ",
   },
   {
     quote:
       "We're incredibly impressed with Bibek's expertise and dedication. They understood our requirements perfectly and delivered a website that exceeded our expectations. Their professionalism and prompt communication made the collaboration a breeze. We're thrilled with the results and would happily work with Bibek again.",
-    image: "./tzuyu.jpg",
-    name: "Chou Tzuyu",
-    company: "XYZ Co.",
+    image: "./zoro.jpg",
+    name: "Roronoa Zoro",
+    company: "Swordsman of StrawHats",
+  },
+  {
+    quote: "Client testimonials are your business's blockbuster trailers.The fact that he was more intelligent than anyone else in the room could have been easily deduced, but nobody was really paying any attention due to the fact that it was also obvious that the young man only cared about his intelligence.",
+    image:"./billgates.jpg" ,
+    name: "Bill Gates",
+    company: "Microsoft Coorporation",
   },
 ];
 

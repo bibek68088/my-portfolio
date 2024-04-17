@@ -2,9 +2,9 @@ import { educations, experiences } from "../data";
 
 const Resume = () => {
   return (
-    <div className="container px-5 py-10 mx-auto flex flex-col justify-center pb-5 ">
+    <section id="resume" className="container px-5 py-10 mx-auto flex flex-col justify-center pb-5 ">
       <div className="flex flex-col gap-3 pb-12">
-        <h2 className="lg:text-2xl font-roboto text-black bg-yellow-300 p-2 lg:w-[10%] w-[35%] rounded-sm">Know More</h2>
+        <h2 className="lg:text-2xl font-roboto text-black bg-yellow-300 p-2 2xl:w-[10%] lg:w-[10%] xl:w-[12%] md:w-[14%] w-2/5 rounded-sm">Know More</h2>
         <h1 className="text-4xl font-poppins">My Resume</h1>
         <p className="lg:text-2xl lg:w-4/3 w-11/12 font-roboto ">
           I enjoy every step of the design process, from discussion
@@ -36,7 +36,7 @@ const Resume = () => {
           ))}
         </div>
 
-        <div className="pt-10 lg:pt-0 md:pt-0">
+        <div className="pt-10 lg:pt-0 md:pt-10">
           <h1 className="lg:text-4xl text-2xl text-black pb-7">My Experience</h1>
           {experiences.map((experience: any) => (
             <div className="flex gap-3 border-l border-yellow-300">
@@ -60,7 +60,7 @@ const Resume = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
