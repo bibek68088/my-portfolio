@@ -1,140 +1,106 @@
-export const projects = [
+import { Project, Skill, Education, Experience, Testimonial } from "./types";
+
+export const projects: Project[] = [
   {
-    title: "React Reserve",
-    subtitle: "MERN Stack",
+    title: "E-Commerce Platform",
+    subtitle: "React & Node.js",
     description:
-      "There were little things that she simply could not stand. She couldn't stand any of these things, but none of them compared to the number one thing she couldn't stand which topped all of them combined.",
-    image: "./project1.png",
-    link: "https://reactbootcamp.com",
+      "A full-stack e-commerce solution with payment integration and admin dashboard.",
+    image:
+      "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop",
+    link: "#",
   },
   {
-    title: "React Tracks",
-    subtitle: "React and Ant",
+    title: "Task Management App",
+    subtitle: "React & Firebase",
     description:
-      "I'm going to hire professional help tomorrow. I can't handle this anymore. She fell over the coffee table and now there is blood in her catheter. This is much more than I ever signed up to do.",
-    image: "./project2.png",
-    link: "https://project2.com",
+      "Real-time collaborative task management with drag-and-drop functionality.",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
+    link: "#",
   },
   {
-    title: "DevChat",
-    subtitle: "React and Firebase",
+    title: "Portfolio Website",
+    subtitle: "Next.js & Tailwind",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?",
-    image: "./project3.png",
-    link: "https://jsbootcamp.com",
+      "Modern portfolio with animations, dark mode, and content management.",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    link: "#",
   },
   {
-    title: "Epic Todo App",
-    subtitle: "React Hooks",
+    title: "Social Media Dashboard",
+    subtitle: "React & Chart.js",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?",
-    image: "./project4.jpg",
-    link: "https://pythonbootcamp.com",
+      "Analytics dashboard with data visualization and reporting features.",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    link: "#",
   },
 ];
 
-export const skills = [
-  {
-    title: "HTML",
-    progress: "90%",
-  },
-  {
-    title: "CSS",
-    progress: "70%",
-  },
-  {
-    title: "React",
-    progress: "65%",
-  },
-  {
-    title: "Javascript",
-    progress: "80%",
-  },
-  {
-    title:"Tailwind",
-    progress: "70%",
-  },
-  {
-    title:"MySQL",
-    progress: "79%",
-  },
-  {
-    title: "PHP",
-    progress:"95%",
-  },
-  {
-    title:"WordPress",
-    progress:"84%"
-  }
+export const skills: Skill[] = [
+  { title: "React / Next.js", progress: "90%" },
+  { title: "TypeScript", progress: "85%" },
+  { title: "Node.js / Express", progress: "80%" },
+  { title: "Tailwind CSS", progress: "90%" },
+  { title: "MongoDB / PostgreSQL", progress: "75%" },
+  { title: "Git / GitHub", progress: "85%" },
 ];
 
-export const testimonials = [
+export const educations: Education[] = [
   {
-    quote:
-      "Working with Bibek was a fantastic experience! They not only grasped our brand vision effortlessly but also translated it into a beautifully designed and functional website. Their attention to detail and responsiveness made the entire process seamless. I highly recommend Bibek for anyone looking for a skilled and reliable web developer.",
-    image: "./tony.jpg",
-    name: "Tony Stark",
-    company: "Ironman of Avengers ",
+    title: "Bachelor in Computer Science",
+    sub: "Tribhuvan University",
+    duration: "2019 - 2023",
+    desc: "Focused on software engineering, web technologies, and database management systems.",
   },
   {
-    quote:
-      "We're incredibly impressed with Bibek's expertise and dedication. They understood our requirements perfectly and delivered a website that exceeded our expectations. Their professionalism and prompt communication made the collaboration a breeze. We're thrilled with the results and would happily work with Bibek again.",
-    image: "./zoro.jpg",
-    name: "Roronoa Zoro",
-    company: "Swordsman of StrawHats",
-  },
-  {
-    quote: "Client testimonials are your business's blockbuster trailers.The fact that he was more intelligent than anyone else in the room could have been easily deduced, but nobody was really paying any attention due to the fact that it was also obvious that the young man only cared about his intelligence.",
-    image:"./billgates.jpg" ,
-    name: "Bill Gates",
-    company: "Microsoft Coorporation",
-  },
-];
-
-export const educations = [
-  {
-    title: "Sainik Awasiya Mahavidhayala",
-    sub: "Teghari, Kailali",
-    duration: "2010 - 2017",
-    logo: "./sainik-logo.jpg",
-    link: "https://www.samt.edu.np/",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo expedita accusamus",
-  },
-  {
-    title: "NASA International College",
-    sub: "Tinkune, Kathmandu",
+    title: "High School",
+    sub: "Secondary Education Board",
     duration: "2017 - 2019",
-    logo: "./nasa-logo.jpg",
-    link: "https://www.nasacollege.com/",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo expedita accusamus",
-  },
-  {
-    title: "Orchid International College",
-    sub: "Gaushala, Kathmandu",
-    duration: "2020- ongoing",
-    logo: "./orchid-logo.png",
-    link: "https://www.oic.edu.np/",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo expedita accusamus",
+    desc: "Completed with distinction in Science stream, focusing on Mathematics and Computer Science.",
   },
 ];
 
-export const experiences = [
+export const experiences: Experience[] = [
   {
-    title: "Product Designer",
-    sub: "Easy Computers",
-    duration: "2018 - ongoing",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo expedita accusamus",
+    title: "Full Stack Developer",
+    sub: "Tech Solutions Pvt. Ltd.",
+    duration: "2023 - Present",
+    desc: "Developing and maintaining web applications using React, Node.js, and PostgreSQL. Led a team of 3 developers on multiple projects.",
   },
   {
-    title: "UI/UX Expert",
-    sub: "eTheme Group",
-    duration: "2015 - 2018",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo expedita accusamus",
+    title: "Frontend Developer Intern",
+    sub: "Digital Agency Nepal",
+    duration: "2022 - 2023",
+    desc: "Created responsive websites and collaborated with designers to implement user-friendly interfaces.",
+  },
+];
+
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "Bibek delivered exceptional work on our e-commerce platform. His attention to detail and technical expertise made our project a huge success.",
+    name: "John Smith",
+    company: "CEO, TechStart Inc.",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
   },
   {
-    title: "Senior Developer",
-    sub: "Envato Studio",
-    duration: "2012 - 2018",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo expedita accusamus",
+    quote:
+      "Working with Bibek was a pleasure. He understood our requirements perfectly and delivered a beautiful, functional website ahead of schedule.",
+    name: "Sarah Johnson",
+    company: "Marketing Director, Creative Co.",
+    image:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+  },
+  {
+    quote:
+      "His problem-solving skills and dedication to quality code are outstanding. I highly recommend Bibek for any web development project.",
+    name: "Michael Chen",
+    company: "CTO, Innovation Labs",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
   },
 ];

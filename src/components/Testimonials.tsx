@@ -1,100 +1,109 @@
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { testimonials } from "../data";
-import { LeftCircleOutlined, RightCircleOutlined } from "@ant-design/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
+import { Testimonial } from "../types";
 
 const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHover, setIsHover] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
-    }, 4000);
+      setCurrentIndex((prev: number) =>
+        prev === testimonials.length - 1 ? 0 : prev + 1
+      );
+    }, 5000);
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, []);
 
-  const prevSlide = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? testimonials.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
+  const goToSlide = (index: number): void => {
+    setCurrentIndex(index);
   };
 
-  const nextSlide = () => {
-    const isLastSlide = currentIndex === testimonials.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
+  const nextSlide = (): void => {
+    setCurrentIndex((prev: number) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = (): void => {
+    setCurrentIndex((prev: number) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
   };
 
   return (
-    <section id="testimonials" className="pt-10">
-      <div className="px-5 py-10 bg-gray-400 mx-auto text-center">
-        <div className="pt-20">
-          <h2 className="text-lg bg-yellow-300 2xl:w-[10%] xl:w-[12%] md:w-[22%] w-2/3  p-1 mx-auto">
-            Client Testimonials
+    <section
+      id="testimonials"
+      className="py-20 bg-gray-900 dark:bg-gray-900 transition-colors duration-300"
+    >
+      <div className="container px-5 mx-auto">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-sm text-yellow-400 font-semibold tracking-wide uppercase mb-2">
+            Testimonials
           </h2>
-          <h1 className="lg:text-5xl text-2xl text-white font-medium title-font text-black pt-4 mb-12">
-            What Some of my Clients Say
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            What Clients Say
           </h1>
-        </div>
-        <div className="justify-center mx-auto md:p-10 ">
-          <div className="relative h-[450px] overflow-hidden">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className={`absolute top-0 left-0 h-full w-full p-8 rounded transition-all duration-500 ease-in-out ${
-                  currentIndex === index ? "opacity-100" : "opacity-0"
-                }`}
-              >
-                <p className="leading-relaxed text-white lg:w-[70%] mx-auto lg:text-2xl md:text-xl text-sm  md:mb-6">
-                  "{testimonial.quote}"
-                </p>
+        </motion.div>
+        <div className="max-w-4xl mx-auto relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              className="overflow-hidden h-96"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="text-center px-8 h-full flex flex-col justify-center">
                 <img
-                  src={testimonial.image}
-                  alt="client-image"
-                  className="w-20 m-2 mx-auto rounded-full"
+                  src={testimonials[currentIndex].image}
+                  alt={testimonials[currentIndex].name}
+                  className="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-yellow-400 shadow-lg"
                 />
-                <div className="flex items-center">
-                  <span className="flex-grow flex flex-col pl-4">
-                    <span className="title-font text-xl font-poppins font-medium text-white">
-                      {testimonial.name}
-                    </span>
-                    <span className="text-white text-lg font-poppins text-sm">
-                      {testimonial.company}
-                    </span>
-                  </span>
-                </div>
+                <p className="text-xl md:text-2xl text-gray-300 mb-8 italic">
+                  "{testimonials[currentIndex].quote}"
+                </p>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {testimonials[currentIndex].name}
+                </h3>
+                <p className="text-yellow-400">
+                  {testimonials[currentIndex].company}
+                </p>
               </div>
+            </motion.div>
+          </AnimatePresence>
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-colors"
+          >
+            <ChevronLeftIcon className="w-6 h-6" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-colors"
+          >
+            <ChevronRightIcon className="w-6 h-6" />
+          </button>
+          <div className="flex justify-center gap-3 mt-12">
+            {testimonials.map((_: Testimonial, index: number) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`rounded-full transition-all ${
+                  currentIndex === index
+                    ? "bg-yellow-400 w-8 h-3"
+                    : "bg-gray-600 w-3 h-3"
+                }`}
+              />
             ))}
           </div>
-          <div
-            className="absolute flex justify-between text-white lg:text-4xl md:text-3xl text-2xl inset-x-0 md:left-5 md:right-5 left-3 right-3 xl:left-60 xl:right-60 opacity-[60%] -translate-y-80"
-            onMouseOver={() => setIsHover(true)}
-            onMouseOut={() => setIsHover(false)}
-          >
-            <LeftCircleOutlined
-              className={`hover:cursor-pointer hover:scale-125 `}
-              onClick={prevSlide}
-            />
-            <RightCircleOutlined
-              className={`hover:cursor-pointer  hover:scale-125 `}
-              onClick={nextSlide}
-            />
-          </div>
-          <div className='flex justify-center'>
-                    {testimonials.map((_testimonial, slideIndex:any) => (
-                        <div
-                            key={slideIndex}
-                            onClick={() => setCurrentIndex(slideIndex)}
-                            className='text-2xl cursor-pointer'
-                        >
-                            <div
-                                style={{ width: '15px', height: '15px', backgroundColor: currentIndex === slideIndex ? 'yellow' : 'gray', marginRight: slideIndex !== testimonials.length - 1 ? '20px' : '0' }}
-                                className='rounded-full'
-                            ></div>
-                        </div>
-                    ))}
-                </div>
-          
         </div>
       </div>
     </section>

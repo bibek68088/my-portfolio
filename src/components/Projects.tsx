@@ -1,50 +1,65 @@
-
+import { motion } from "framer-motion";
 import { projects } from "../data";
+import { Project } from "../types";
 
 const Projects = () => {
   return (
-    <section id="projects" className="text-black bg-white body-font">
-      <div className="container px-5 py-10 mx-auto text-center lg:px-40">
-        <div className="flex flex-col w-full mb-20">
-          <h1 className="lg:text-5xl text-3xl font-poppins font-medium title-font mb-4 text-black">
-            Some of my most recent projects
+    <section
+      id="projects"
+      className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300"
+    >
+      <div className="container px-5 mx-auto">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-sm text-yellow-400 font-semibold tracking-wide uppercase mb-2">
+            Portfolio
+          </h2>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            Recent Projects
           </h1>
-          <p className="lg:w-2/3 mx-auto leading-relaxed font-roboto text-base">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            doloremque accusantium, cupiditate excepturi, odio, dolore enim
-            itaque iste minima alias quos officia? Ea maxime beatae atque natus
-            veritatis omnis in.
+          <p className="lg:w-2/3 mx-auto text-lg text-gray-600 dark:text-gray-300">
+            Here are some of my recent works that showcase my skills in web
+            development, design, and problem-solving.
           </p>
-        </div>
-        <div className="flex flex-wrap -m-4">
-          {projects.map((project) => (
-            <a
+        </motion.div>
+        <div className="grid md:grid-cols-2 gap-8">
+          {projects.map((project: Project, index: number) => (
+            <motion.a
               href={project.link}
-              key={project.image}
-              className="sm:w-1/2 w-100 p-4"
+              key={index}
+              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 bg-white dark:bg-gray-700"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02 }}
             >
-              <div className="flex relative">
-                <img
-                  alt="gallery"
-                  className="absolute inset-0 w-full h-full object-cover object-center"
-                  src={project.image}
-                />
-                <div className="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-                  <h2 className="tracking-widest text-sm title-font font-medium text-green-400 mb-1">
-                    {project.subtitle}
-                  </h2>
-                  <h1 className="title-font text-lg: font-medium text-white mb-3">
-                    {project.title}
-                  </h1>
-                  <p className="leading-relaxed">{project.description}</p>
-                </div>
+              <img
+                alt={project.title}
+                className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                src={project.image}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/95 via-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <h2 className="text-sm font-semibold text-yellow-400 mb-2">
+                  {project.subtitle}
+                </h2>
+                <h1 className="text-2xl font-bold text-white mb-3">
+                  {project.title}
+                </h1>
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  {project.description}
+                </p>
               </div>
-            </a>
+            </motion.a>
           ))}
         </div>
       </div>
     </section>
   );
 };
-
 export default Projects;
