@@ -1,160 +1,227 @@
+import { MapPinIcon, PhoneIcon, EnvelopeIcon } from "@heroicons/react/16/solid";
 import { useState } from "react";
-import { Button, message } from "antd";
-import {
-  TwitterOutlined,
-  FacebookOutlined,
-  InstagramOutlined,
-  LinkedinOutlined,
-  GithubOutlined,
-} from "@ant-design/icons";
+import { motion } from "framer-motion";
+import { ConfigProvider, Form, Input, theme } from "antd";
 
-const Contact = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [query, setQuery] = useState("");
-  const [messaging, setMessage] = useState(false);
+interface FormValues {
+  name: string;
+  email: string;
+  message: string;
+}
 
-  const validateName = (name: string): boolean => {
-    const rule = /^[a-zA-Z]{2,40} [a-zA-Z]{2,40}$/;
-    return rule.test(name);
-  };
+const Contact = ({ isDark }: { isDark: boolean }) => {
+  const [form] = Form.useForm<FormValues>();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  const validateEmail = (email: string): boolean => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const handleSubmit = () => {
-    if (!name || !email || !query) {
-      message.error("Please fill in all fields.");
-      return;
-    }
-    if (!validateName(name)) {
-      message.error("Please enter your correct name.");
-      return;
-    }
-    if (!validateEmail(email)) {
-      message.error("Please enter a valid email address.");
-      return;
-    }
-
-    setMessage(true);
+  const onFinish = (values: FormValues): void => {
+    setIsSubmitting(true);
+    console.log("Form values:", values);
     setTimeout(() => {
-      message.success("Form submitted successfully");
-      setMessage(false);
-      setEmail("");
-      setQuery("");
+      alert("Message sent successfully!");
+      form.resetFields();
+      setIsSubmitting(false);
     }, 1000);
   };
 
+  const onFinishFailed = (): void => {
+    console.log("Form validation failed");
+  };
+
   return (
-    <section id="contact" className="relative bg-yellow-300">
-      <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap font-roboto">
-        <div className="container lg:w-2/5 lg:p-10 ">
-          <div className="lg:text-4xl text-2xl font-bold pb-4">Let's get in touch</div>
-          <div className="pb-10 flex flex-col">
-            <div className="lg:text-2xl md:w-3/4 lg:w-full text-justify">
-              I enjoy discussing new projects and design challlenges. Please
-              share as much info, as possible so we can get the most out of our
-              first catch-up
-            </div>
-            <div className="pt-10">
-              <h2 className="font-bold text-2xl">Living In:</h2>
-              <p className="text-lg">New Baneshwor-10, Kathmandu, Nepal</p>
-            </div>
-            <div className="pt-10">
-              <h2 className="font-bold text-2xl">Call:</h2>
-              <p className="text-lg">+977 980-867 2095</p>
-            </div>
-          </div>
-          <div className="flex text-3xl gap-6">
-            <div>
-              <a href="">
-                <TwitterOutlined className="hover:text-blue-500 hover:scale-125 cursor-pointer rounded" />
-              </a>
-            </div>
-            <div>
-              <a href="https://www.facebook.com/bibek68088/">
-                <FacebookOutlined className="hover:text-blue-700 hover:scale-125 cursor-pointer rounded" />
-              </a>
-            </div>
-            <div>
-              <a href="">
-              <InstagramOutlined className="hover:text-pink-500 hover:scale-125 cursor-pointer rounded" />
-              </a>
-            </div>
-            <div>
-              <a href="https://github.com/bibek68088">
-                <GithubOutlined className="hover:text-white-300 hover:scale-125 cursor-pointer rounded" />
-              </a>
-            </div>
-            <div>
-              <a href="https://www.linkedin.com/in/bibek-tamang-890721269/">
-                <LinkedinOutlined className="hover:text-blue-700 hover:scale-125 cursor-pointer rounded" />
-              </a>
-            </div>
-          </div>
-        </div>
-        <form
-          name="contact"
-          className="lg:w-1/3 md:w-2/3 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0"
-        >
-          <h2 className="text-black sm:text-4xl text-3xl mb-1 font-medium title-font">
-            Hire Me
-          </h2>
-          <p className="leading-relaxed mb-5">
-            I enjoy discussing new projects and design challenges. Please share
-            as much info, as possible so we can get the most out of our first
-            catch-up
-          </p>
-          <div className="relative mb-4">
-            <label htmlFor="name" className="leading-7 text-sm text-black">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="w-full bg-white rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="relative mb-4">
-            <label htmlFor="email" className="leading-7 text-sm text-black">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="w-full bg-white rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-black py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="relative mb-4">
-            <label
-              htmlFor="message"
-              className="leading-7 text-sm text-black"
-            >
-              How can I Help You?
-            </label>
-            <textarea
-              name="message"
-              id="message"
-              className="w-full bg-white rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 h-32 text-base outline-none text-black py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-              onChange={(e) => setQuery(e.target.value)}
-            />
-          </div>
-          <Button
-            type="primary"
-            onClick={handleSubmit}
-            loading={messaging}
-            className="text-white bg-gray-700 border-0 focus:outline-none rounded text-lg h-10"
+    <section
+      id="contact"
+      className="py-20 bg-yellow-400 dark:bg-gray-800 transition-colors duration-300"
+    >
+      <div className="container px-5 mx-auto">
+        <div className="grid md:grid-cols-2 gap-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            Send
-          </Button>
-        </form>
+            <h2 className="text-sm font-semibold tracking-wide uppercase mb-2 text-gray-900 dark:text-white">
+              Contact
+            </h2>
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Let's Work Together
+            </h1>
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
+              I'm always interested in hearing about new projects and
+              opportunities. Whether you have a question or just want to say hi,
+              feel free to reach out!
+            </p>
+
+            <div className="space-y-6">
+              <motion.div
+                className="flex items-start gap-4"
+                whileHover={{ x: 5 }}
+              >
+                <MapPinIcon className="w-6 h-6 text-gray-900 dark:text-white mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-bold text-gray-900 dark:text-white text-lg">
+                    Location
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    New Baneshwor-10, Kathmandu, Nepal
+                  </p>
+                </div>
+              </motion.div>
+              <motion.div
+                className="flex items-start gap-4"
+                whileHover={{ x: 5 }}
+              >
+                <PhoneIcon className="w-6 h-6 text-gray-900 dark:text-white mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-bold text-gray-900 dark:text-white text-lg">
+                    Phone
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    +977 980-867 2095
+                  </p>
+                </div>
+              </motion.div>
+              <motion.div
+                className="flex items-start gap-4"
+                whileHover={{ x: 5 }}
+              >
+                <EnvelopeIcon className="w-6 h-6 text-gray-900 dark:text-white mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-bold text-gray-900 dark:text-white text-lg">
+                    Email
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    bibek.tamang@example.com
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="bg-white dark:bg-gray-700 p-8 rounded-lg shadow-xl transition-colors duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              Send Message
+            </h2>
+
+            <ConfigProvider
+              theme={{
+                algorithm: isDark
+                  ? theme.darkAlgorithm
+                  : theme.defaultAlgorithm,
+                token: {
+                  colorPrimary: "#facc15",
+                  borderRadius: 8,
+                },
+              }}
+            >
+              <Form
+                form={form}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                layout="vertical"
+                className="space-y-4"
+              >
+                <Form.Item
+                  name="name"
+                  rules={[
+                    { required: true, message: "Name is required" },
+                    {
+                      pattern: /^[a-zA-Z\s]{2,50}$/,
+                      message: "Please enter a valid name",
+                    },
+                  ]}
+                  className="mb-6"
+                >
+                  <Input
+                    placeholder="John Doe"
+                    prefix="👤"
+                    size="large"
+                    className={isDark ? "dark-input" : ""}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name="email"
+                  rules={[
+                    { required: true, message: "Email is required" },
+                    { type: "email", message: "Please enter a valid email" },
+                  ]}
+                  className="mb-6"
+                >
+                  <Input
+                    type="email"
+                    placeholder="john@example.com"
+                    prefix="📧"
+                    size="large"
+                    className={isDark ? "dark-input" : ""}
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  name="message"
+                  rules={[{ required: true, message: "Message is required" }]}
+                  className="mb-6"
+                >
+                  <Input.TextArea
+                    rows={5}
+                    placeholder="Tell me about your project..."
+                    className={`resize-none ${isDark ? "dark-textarea" : ""}`}
+                  />
+                </Form.Item>
+
+                <Form.Item className="mb-0">
+                  <motion.button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 py-4 rounded-lg font-semibold hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {isSubmitting ? "Sending..." : "Send Message"}
+                  </motion.button>
+                </Form.Item>
+              </Form>
+            </ConfigProvider>
+          </motion.div>
+        </div>
       </div>
+
+      <style>{`
+        .dark-input .ant-input,
+        .dark-textarea .ant-input {
+          background-color: #374151 !important;
+          border-color: #4b5563 !important;
+          color: #f9fafb !important;
+        }
+        
+        .dark-input .ant-input::placeholder,
+        .dark-textarea .ant-input::placeholder {
+          color: #9ca3af !important;
+        }
+        
+        .dark-input .ant-input:hover,
+        .dark-textarea .ant-input:hover {
+          border-color: #facc15 !important;
+        }
+        
+        .dark-input .ant-input:focus,
+        .dark-textarea .ant-input:focus {
+          border-color: #facc15 !important;
+          box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.1) !important;
+        }
+        
+        .ant-form-item-has-error .ant-input,
+        .ant-form-item-has-error .ant-input:hover,
+        .ant-form-item-has-error .ant-input:focus {
+          border-color: #ef4444 !important;
+        }
+      `}</style>
     </section>
   );
 };

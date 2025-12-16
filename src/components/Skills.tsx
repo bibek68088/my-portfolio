@@ -1,54 +1,61 @@
+import { motion } from "framer-motion";
 import { skills } from "../data";
+import { Skill } from "../types";
 
 const Skills = () => {
-  const onButtonClick = () => {
-    const cvUrl = "MIS_report.pdf"; // Change this to the local path of your CV file
-    const link = document.createElement("a");
-    link.href = cvUrl;
-    link.download = 'MIS_report.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    console.log("Download initaited");
-  };
   return (
-    <section id="skills">
-      <div className="container px-5 py-10 mx-auto">
-        <div className="text-center mb-20">
-          <h1 className="sm:text-4xl text-3xl font-medium title-font text-black mb-4">
-            My Skills
+    <section
+      id="skills"
+      className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300"
+    >
+      <div className="container px-5 mx-auto">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-sm text-yellow-400 font-semibold tracking-wide uppercase mb-2">
+            Expertise
+          </h2>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            Technical Skills
           </h1>
-          <p className="lg:text-xl font-poppins leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
-            I enjoy diving and learning new things. I am working on a
-            professional, visually sophisticated and technologically proficient,
-            responsive and multi-functional creative websites.
+          <p className="lg:w-2/3 mx-auto text-lg text-gray-600 dark:text-gray-300">
+            I continuously learn and adapt to new technologies to deliver
+            cutting-edge solutions that meet modern web standards.
           </p>
-        </div>
-        <div className="flex flex-wrap justify-between">
-          {skills.map((skill) => (
-            <div key={skill.title} className="w-full lg:w-[45%] mb-4">
-              <div className="flex justify-between mb-1">
-                <span className="text-lg font-roboto font-medium text-black dark:text-white">
+        </motion.div>
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {skills.map((skill: Skill, index: number) => (
+            <motion.div
+              key={index}
+              className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }}
+            >
+              <div className="flex justify-between mb-3">
+                <span className="text-lg font-semibold text-gray-900 dark:text-white">
                   {skill.title}
                 </span>
-                <span className="text-md font-medium text-black dark:text-white">
+                <span className="text-sm font-medium text-yellow-400">
                   {skill.progress}
                 </span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full">
-                <div
-                  className="bg-yellow-300 h-3.5 rounded-full"
-                  style={{ width: skill.progress }}
-                ></div>
+              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                <motion.div
+                  className="bg-yellow-400 h-3 rounded-full"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: skill.progress }}
+                  transition={{ duration: 1.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                />
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-        {/**download cv */}
-        <div className="flex justify-center p-20">
-          <button onClick={onButtonClick} className="border-2 border-black cursor-pointer font-poppins font-medium hover:bg-gray-500 hover:text-white ease-in-out 2xl:p-4 xl:p-6 lg:p-4 p-2 shadow-xl ">
-            Download CV
-          </button>
         </div>
       </div>
     </section>
