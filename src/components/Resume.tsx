@@ -55,6 +55,9 @@ const Resume = () => {
                     <p className="text-yellow-400 font-medium mb-3">
                       {education.sub}
                     </p>
+                    <p className="text-gray-600 font-bold dark:text-gray-300 mb-3">
+                      {education.college}
+                    </p>
                     <p className="text-gray-600 dark:text-gray-300">
                       {education.desc}
                     </p>

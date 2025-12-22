@@ -50,14 +50,16 @@ export const skills: Skill[] = [
 
 export const educations: Education[] = [
   {
-    title: "Bachelor in Computer Science",
+    title: "Bachelor in Computer Application",
     sub: "Tribhuvan University",
-    duration: "2019 - 2023",
+    college: "Orchid International College",
+    duration: "2020 - 2025",
     desc: "Focused on software engineering, web technologies, and database management systems.",
   },
   {
     title: "High School",
     sub: "Secondary Education Board",
+    college: "NASA International School",
     duration: "2017 - 2019",
     desc: "Completed with distinction in Science stream, focusing on Mathematics and Computer Science.",
   },
@@ -67,13 +69,13 @@ export const experiences: Experience[] = [
   {
     title: "Full Stack Developer",
     sub: "Tech Solutions Pvt. Ltd.",
-    duration: "2023 - Present",
+    duration: "2025 - Present",
     desc: "Developing and maintaining web applications using React, Node.js, and PostgreSQL. Led a team of 3 developers on multiple projects.",
   },
   {
     title: "Frontend Developer Intern",
-    sub: "Digital Agency Nepal",
-    duration: "2022 - 2023",
+    sub: "SG Design Nepal",
+    duration: "2024- 2025",
     desc: "Created responsive websites and collaborated with designers to implement user-friendly interfaces.",
   },
 ];

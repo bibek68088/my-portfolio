@@ -144,7 +144,7 @@ const Contact = ({ isDark }: { isDark: boolean }) => {
                   className="mb-6"
                 >
                   <Input
-                    placeholder="John Doe"
+                    placeholder="Full Name"
                     prefix={<UserIcon className="w-4 h-4 text-gray-400" />}
                     size="large"
                     className="contact-input"
@@ -161,7 +161,7 @@ const Contact = ({ isDark }: { isDark: boolean }) => {
                 >
                   <Input
                     type="email"
-                    placeholder="john@example.com"
+                    placeholder="Email Address"
                     prefix={<EnvelopeIcon className="w-4 h-4 text-gray-400" />}
                     size="large"
                     className="contact-input"

@@ -14,6 +14,7 @@ export interface Skill {
 export interface Education {
   title: string;
   sub: string;
+  college: string;
   duration: string;
   desc: string;
 }
@@ -31,4 +32,3 @@ export interface Testimonial {
   company: string;
   image: string;
 }
-
