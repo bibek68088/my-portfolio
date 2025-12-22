@@ -96,7 +96,7 @@ const Contact = ({ isDark }: { isDark: boolean }) => {
                     Email
                   </h3>
                   <p className="text-gray-700 dark:text-gray-300">
-                    bibek.tamang@example.com
+                    bibeks337@gmail.com
                   </p>
                 </div>
               </motion.div>
