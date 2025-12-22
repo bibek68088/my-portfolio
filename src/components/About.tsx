@@ -70,7 +70,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
             />
             <motion.img
-              src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&h=600&fit=crop"
+              src="./Image.jpg"
               alt="Profile"
               className="relative object-cover object-center rounded-lg shadow-2xl"
               initial={{ scale: 1.1 }}

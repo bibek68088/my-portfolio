@@ -1,4 +1,9 @@
-import { MapPinIcon, PhoneIcon, EnvelopeIcon } from "@heroicons/react/16/solid";
+import {
+  MapPinIcon,
+  PhoneIcon,
+  EnvelopeIcon,
+  UserIcon,
+} from "@heroicons/react/16/solid";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ConfigProvider, Form, Input, theme } from "antd";
@@ -140,9 +145,9 @@ const Contact = ({ isDark }: { isDark: boolean }) => {
                 >
                   <Input
                     placeholder="John Doe"
-                    prefix="👤"
+                    prefix={<UserIcon className="w-4 h-4 text-gray-400" />}
                     size="large"
-                    className={isDark ? "dark-input" : ""}
+                    className="contact-input"
                   />
                 </Form.Item>
 
@@ -157,9 +162,9 @@ const Contact = ({ isDark }: { isDark: boolean }) => {
                   <Input
                     type="email"
                     placeholder="john@example.com"
-                    prefix="📧"
+                    prefix={<EnvelopeIcon className="w-4 h-4 text-gray-400" />}
                     size="large"
-                    className={isDark ? "dark-input" : ""}
+                    className="contact-input"
                   />
                 </Form.Item>
 
@@ -171,7 +176,7 @@ const Contact = ({ isDark }: { isDark: boolean }) => {
                   <Input.TextArea
                     rows={5}
                     placeholder="Tell me about your project..."
-                    className={`resize-none ${isDark ? "dark-textarea" : ""}`}
+                    className="contact-textarea resize-none"
                   />
                 </Form.Item>
 
@@ -193,33 +198,95 @@ const Contact = ({ isDark }: { isDark: boolean }) => {
       </div>
 
       <style>{`
-        .dark-input .ant-input,
-        .dark-textarea .ant-input {
+        /* Base input styles */
+        .contact-input input,
+        .contact-textarea textarea {
+          transition: all 0.3s ease !important;
+        }
+
+        /* Light mode styles */
+        .contact-input input {
+          background-color: #ffffff !important;
+          border-color: #d1d5db !important;
+          color: #111827 !important;
+        }
+        
+        .contact-textarea textarea {
+          background-color: #ffffff !important;
+          border-color: #d1d5db !important;
+          color: #111827 !important;
+        }
+
+        .contact-input input::placeholder,
+        .contact-textarea textarea::placeholder {
+          color: #9ca3af !important;
+        }
+
+        /* Dark mode styles - when parent has dark class */
+        .dark .contact-input input {
           background-color: #374151 !important;
           border-color: #4b5563 !important;
           color: #f9fafb !important;
         }
         
-        .dark-input .ant-input::placeholder,
-        .dark-textarea .ant-input::placeholder {
+        .dark .contact-textarea textarea {
+          background-color: #374151 !important;
+          border-color: #4b5563 !important;
+          color: #f9fafb !important;
+        }
+        
+        .dark .contact-input input::placeholder,
+        .dark .contact-textarea textarea::placeholder {
           color: #9ca3af !important;
         }
-        
-        .dark-input .ant-input:hover,
-        .dark-textarea .ant-input:hover {
+
+        /* Hover states */
+        .contact-input input:hover,
+        .contact-textarea textarea:hover {
           border-color: #facc15 !important;
         }
-        
-        .dark-input .ant-input:focus,
-        .dark-textarea .ant-input:focus {
+
+        .dark .contact-input input:hover,
+        .dark .contact-textarea textarea:hover {
           border-color: #facc15 !important;
-          box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.1) !important;
+          background-color: #4b5563 !important;
         }
         
-        .ant-form-item-has-error .ant-input,
-        .ant-form-item-has-error .ant-input:hover,
-        .ant-form-item-has-error .ant-input:focus {
+        /* Focus states */
+        .contact-input input:focus,
+        .contact-textarea textarea:focus {
+          border-color: #facc15 !important;
+          box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.2) !important;
+        }
+
+        .dark .contact-input input:focus,
+        .dark .contact-textarea textarea:focus {
+          background-color: #4b5563 !important;
+        }
+
+        /* Prefix icon color in dark mode */
+        .dark .contact-input .ant-input-prefix {
+          color: #9ca3af !important;
+        }
+
+        /* Error states */
+        .ant-form-item-has-error .contact-input input,
+        .ant-form-item-has-error .contact-input input:hover,
+        .ant-form-item-has-error .contact-input input:focus,
+        .ant-form-item-has-error .contact-textarea textarea,
+        .ant-form-item-has-error .contact-textarea textarea:hover,
+        .ant-form-item-has-error .contact-textarea textarea:focus {
           border-color: #ef4444 !important;
+        }
+
+        /* Error message styling */
+        .ant-form-item-explain-error {
+          color: #ef4444 !important;
+        }
+
+        /* Remove any Ant Design default dark theme overrides */
+        .ant-input-affix-wrapper {
+          background: transparent !important;
         }
       `}</style>
     </section>

@@ -9,17 +9,25 @@ import Skills from "./components/Skills";
 import Testimonials from "./components/Testimonials";
 
 export default function App() {
-  const [isDark, setIsDark] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      return savedTheme === "dark";
+    }
+    return false; 
+  });
 
   const toggleTheme = (): void => {
-    setIsDark(!isDark);
+    setIsDark((prev) => !prev);
   };
 
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [isDark]);
 
