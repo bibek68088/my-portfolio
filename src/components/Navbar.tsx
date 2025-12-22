@@ -64,227 +64,112 @@ const Navbar = ({
     setIsMobileMenuOpen(false);
   };
 
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-  }, [isMobileMenuOpen]);
-
   return (
-    <>
-      <style>{`
-        @keyframes slideDown {
-          from { transform: translateY(-100%); }
-          to { transform: translateY(0); }
-        }
-        @keyframes fadeInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-      `}</style>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white dark:bg-gray-900 shadow-lg"
+          : "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm"
+      }`}
+    >
+      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a
+          href="#about"
+          className="text-2xl font-bold text-gray-900 dark:text-white mb-4 md:mb-0"
+        >
+          Bibek<span className="text-yellow-400">.</span>
+        </a>
 
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white dark:bg-gray-900 shadow-lg"
-            : "bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm"
-        }`}
-        style={{ animation: "slideDown 0.5s ease-out" }}
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
+        <nav className="hidden md:flex md:ml-auto md:mr-4 flex-wrap items-center text-base justify-center gap-7">
+          {[
+            { href: "#projects", text: "Past Work" },
+            { href: "#skills", text: "Skills" },
+            { href: "#resume", text: "Resume" },
+            { href: "#testimonials", text: "Testimonials" },
+          ].map((item) => (
             <a
-              href="#about"
-              className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white hover:scale-105 transition-transform"
+              key={item.href}
+              href={item.href}
+              className="text-gray-900 dark:text-gray-300 hover:text-yellow-400 dark:hover:text-yellow-400 transition-colors"
             >
-              Bibek<span className="text-yellow-400">.</span>
+              {item.text}
             </a>
+          ))}
+        </nav>
 
-            <nav className="hidden lg:flex items-center space-x-8">
-              {[
-                { href: "#projects", text: "Past Work" },
-                { href: "#skills", text: "Skills" },
-                { href: "#resume", text: "Resume" },
-                { href: "#testimonials", text: "Testimonials" },
-              ].map((item, index) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-gray-900 dark:text-gray-300 hover:text-yellow-400 dark:hover:text-yellow-400 transition-all hover:-translate-y-0.5 transform duration-200"
-                  style={{
-                    animation: `fadeInLeft 0.5s ease-out ${index * 0.1}s both`,
-                  }}
-                >
-                  {item.text}
-                </a>
-              ))}
-            </nav>
-
-            <div className="hidden lg:flex items-center gap-4">
-              <a
-                href="#contact"
-                className="inline-flex items-center bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-400 hover:text-gray-900 dark:hover:bg-yellow-400 rounded-lg transition-all duration-300 hover:scale-105 active:scale-95"
-              >
-                Say Hello
-                <ArrowRightIcon className="w-4 h-4 ml-2" />
-              </a>
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition-all hover:rotate-180 hover:scale-110 active:scale-90"
-                aria-label="Toggle theme"
-              >
-                {isDark ? (
-                  <SunIcon className="w-5 h-5" />
-                ) : (
-                  <MoonIcon className="w-5 h-5" />
-                )}
-              </button>
-            </div>
-
-            <div className="flex lg:hidden items-center gap-3">
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-                aria-label="Toggle theme"
-              >
-                {isDark ? (
-                  <SunIcon className="w-5 h-5" />
-                ) : (
-                  <MoonIcon className="w-5 h-5" />
-                )}
-              </button>
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? (
-                  <XMarkIcon className="w-6 h-6" />
-                ) : (
-                  <Bars3Icon className="w-6 h-6" />
-                )}
-              </button>
-            </div>
-          </div>
-
-          <div
-            className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-              isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-            }`}
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            href="#contact"
+            className="inline-flex items-center bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 border-0 py-2 px-5 focus:outline-none hover:bg-yellow-400 hover:text-gray-900 dark:hover:bg-yellow-400 rounded-lg transition-colors duration-300"
           >
-            <nav className="py-4 space-y-3 border-t border-gray-200 dark:border-gray-700">
-              {[
-                { href: "#projects", text: "Past Work" },
-                { href: "#skills", text: "Skills" },
-                { href: "#resume", text: "Resume" },
-                { href: "#testimonials", text: "Testimonials" },
-              ].map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleLinkClick}
-                  className="block px-4 py-2 text-gray-900 dark:text-gray-300 hover:text-yellow-400 dark:hover:text-yellow-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
-                >
-                  {item.text}
-                </a>
-              ))}
-              <a
-                href="#contact"
-                onClick={handleLinkClick}
-                className="flex items-center justify-center mx-4 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 py-3 px-5 rounded-lg hover:bg-yellow-400 hover:text-gray-900 dark:hover:bg-yellow-400 transition-colors"
-              >
-                Say Hello
-                <ArrowRightIcon className="w-4 h-4 ml-2" />
-              </a>
-            </nav>
-          </div>
+            Say Hello
+            <ArrowRightIcon className="w-4 h-4 ml-2" />
+          </a>
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+          >
+            {isDark ? (
+              <SunIcon className="w-5 h-5" />
+            ) : (
+              <MoonIcon className="w-5 h-5" />
+            )}
+          </button>
         </div>
-      </header>
-    </>
+
+        <div className="flex md:hidden items-center gap-3 ml-auto">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+          >
+            {isDark ? (
+              <SunIcon className="w-5 h-5" />
+            ) : (
+              <MoonIcon className="w-5 h-5" />
+            )}
+          </button>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+          >
+            {isMobileMenuOpen ? (
+              <XMarkIcon className="w-6 h-6" />
+            ) : (
+              <Bars3Icon className="w-6 h-6" />
+            )}
+          </button>
+        </div>
+
+        {isMobileMenuOpen && (
+          <nav className="md:hidden w-full mt-4 pt-4 space-y-3 border-t border-gray-200 dark:border-gray-700">
+            {[
+              { href: "#projects", text: "Past Work" },
+              { href: "#skills", text: "Skills" },
+              { href: "#resume", text: "Resume" },
+              { href: "#testimonials", text: "Testimonials" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={handleLinkClick}
+                className="block px-4 py-2 text-gray-900 dark:text-gray-300 hover:text-yellow-400 dark:hover:text-yellow-400 transition-colors"
+              >
+                {item.text}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              onClick={handleLinkClick}
+              className="flex items-center justify-center bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 py-3 px-5 rounded-lg hover:bg-yellow-400 hover:text-gray-900 dark:hover:bg-yellow-400 transition-colors"
+            >
+              Say Hello
+              <ArrowRightIcon className="w-4 h-4 ml-2" />
+            </a>
+          </nav>
+        )}
+      </div>
+    </header>
   );
 };
-export default function App() {
-  const [isDark, setIsDark] = useState(false);
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-  };
 
-  return (
-    <div className={isDark ? "dark" : ""}>
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors">
-        <Navbar isDark={isDark} toggleTheme={toggleTheme} />
-
-        <div className="pt-24 pb-12 px-4">
-          <div className="container mx-auto">
-            <section
-              id="about"
-              className="min-h-screen flex items-center justify-center"
-            >
-              <div className="text-center">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-                  Welcome to My Portfolio
-                </h1>
-                <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400">
-                  Scroll down to see the navbar in action
-                </p>
-              </div>
-            </section>
-
-            <section
-              id="projects"
-              className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800 -mx-4 px-4"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-                Past Work
-              </h2>
-            </section>
-
-            <section
-              id="skills"
-              className="min-h-screen flex items-center justify-center"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-                Skills
-              </h2>
-            </section>
-
-            <section
-              id="resume"
-              className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800 -mx-4 px-4"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-                Resume
-              </h2>
-            </section>
-
-            <section
-              id="testimonials"
-              className="min-h-screen flex items-center justify-center"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-                Testimonials
-              </h2>
-            </section>
-
-            <section
-              id="contact"
-              className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800 -mx-4 px-4"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-                Contact
-              </h2>
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+export default Navbar;
