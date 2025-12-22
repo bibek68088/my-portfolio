@@ -35,7 +35,7 @@ const Testimonials = () => {
   return (
     <section
       id="testimonials"
-      className="py-20 bg-gray-900 dark:bg-gray-900 transition-colors duration-300"
+      className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300"
     >
       <div className="container px-5 mx-auto">
         <motion.div
@@ -47,7 +47,7 @@ const Testimonials = () => {
           <h2 className="text-sm text-yellow-400 font-semibold tracking-wide uppercase mb-2">
             Testimonials
           </h2>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             What Clients Say
           </h1>
         </motion.div>
@@ -67,10 +67,10 @@ const Testimonials = () => {
                   alt={testimonials[currentIndex].name}
                   className="w-24 h-24 rounded-full mx-auto mb-6 object-cover border-4 border-yellow-400 shadow-lg"
                 />
-                <p className="text-xl md:text-2xl text-gray-300 mb-8 italic">
+                <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 italic">
                   "{testimonials[currentIndex].quote}"
                 </p>
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                   {testimonials[currentIndex].name}
                 </h3>
                 <p className="text-yellow-400">
@@ -81,13 +81,13 @@ const Testimonials = () => {
           </AnimatePresence>
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-colors"
+            className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 text-gray-900 dark:text-white p-3 rounded-full transition-colors"
           >
             <ChevronLeftIcon className="w-6 h-6" />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-3 rounded-full transition-colors"
+            className="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-200 dark:bg-white/10 hover:bg-gray-300 dark:hover:bg-white/20 text-gray-900 dark:text-white p-3 rounded-full transition-colors"
           >
             <ChevronRightIcon className="w-6 h-6" />
           </button>
