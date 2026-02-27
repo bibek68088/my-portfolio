@@ -73,13 +73,7 @@ export const experiences: Experience[] = [
   {
     title: "Frontend Developer",
     sub: "SGDG, Nepal",
-    duration: "2023 – Present",
+    duration: "2024 – Present",
     desc: "Building performant React applications, design systems, and collaborating with cross-functional teams.",
-  },
-  {
-    title: "Intern Software Engineer",
-    sub: "SGDG, Nepal",
-    duration: "2022 – 2023",
-    desc: "Delivered 20+ projects for international clients — web apps, landing pages, and custom dashboards.",
   },
 ];
