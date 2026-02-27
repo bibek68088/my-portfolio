@@ -283,6 +283,11 @@ h5 {
   box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
 }
 
+/* Allow border-radius overrides (e.g. rounded-full for icon buttons) */
+.cta-btn.rounded-full {
+  border-radius: 9999px;
+}
+
 /* ─────────────────────────────────────────────
    GRADIENT TEXT
 ───────────────────────────────────────────── */

@@ -16,7 +16,11 @@ const socials = [
     Icon: IconBrandLinkedin,
     href: "https://www.linkedin.com/in/bibek-tamang-890721269/",
   },
-  { label: "Twitter", Icon: IconBrandTwitter, href: "#" },
+  {
+    label: "Twitter",
+    Icon: IconBrandTwitter,
+    href: "https://x.com/bibek68088?s=21",
+  },
 ];
 
 const Footer = () => (
