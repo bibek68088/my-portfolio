@@ -1,25 +1,21 @@
 import { useState, useEffect } from "react";
+import "./styles/global.css";
+import Navbar from "./components/Navbar";
 import About from "./components/About";
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import Resume from "./components/Resume";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
-import Projects from "./components/Projects";
-import Resume from "./components/Resume";
-import Skills from "./components/Skills";
-import Testimonials from "./components/Testimonials";
+import FloatingOrbs from "./components/Floatingorbs";
 
 export default function App() {
   const [isDark, setIsDark] = useState<boolean>(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      return savedTheme === "dark";
-    }
-    return false; 
+    const saved = localStorage.getItem("theme");
+    return saved ? saved === "dark" : true;
   });
 
-  const toggleTheme = (): void => {
-    setIsDark((prev) => !prev);
-  };
+  const toggleTheme = (): void => setIsDark((prev) => !prev);
 
   useEffect(() => {
     if (isDark) {
@@ -32,15 +28,17 @@ export default function App() {
   }, [isDark]);
 
   return (
-    <main className="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-300">
-      <Navbar isDark={isDark} toggleTheme={toggleTheme} />
-      <About />
-      <Projects />
-      <Skills />
-      <Resume />
-      <Testimonials />
-      <Contact isDark={isDark} />
-      <Footer />
+    <main className="min-h-screen">
+      <FloatingOrbs />
+      <div className="relative z-10">
+        <Navbar isDark={isDark} toggleTheme={toggleTheme} />
+        <About />
+        <Projects />
+        <Skills />
+        <Resume />
+        <Contact />
+        <Footer />
+      </div>
     </main>
   );
 }

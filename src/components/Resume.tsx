@@ -1,107 +1,91 @@
+import { ElementType } from "react";
 import { motion } from "framer-motion";
+import { IconSchool, IconBriefcase } from "@tabler/icons-react";
 import { educations, experiences } from "../data";
-import { Education, Experience } from "../types";
+import type { Education, Experience } from "../types";
+import SectionHeader from "./SectionHeader";
 
 const Resume = () => {
+  const columns: {
+    heading: string;
+    items: (Education | Experience)[];
+    Icon: ElementType;
+  }[] = [
+    { heading: "Education", items: educations, Icon: IconSchool },
+    { heading: "Experience", items: experiences, Icon: IconBriefcase },
+  ];
+
   return (
-    <section
-      id="resume"
-      className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300"
-    >
-      <div className="container px-5 mx-auto">
-        <motion.div
-          className="mb-16 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-sm text-yellow-400 font-semibold tracking-wide uppercase mb-2">
-            Background
-          </h2>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            My Journey
-          </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            I believe in continuous learning and growth. Every experience has
-            shaped my approach to design and development.
-          </p>
-        </motion.div>
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-              Education
-            </h2>
-            <div className="space-y-8">
-              {educations.map((education: Education, index: number) => (
-                <motion.div
-                  key={index}
-                  className="relative pl-8 border-l-2 border-yellow-400"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ x: 5 }}
-                >
-                  <div className="absolute w-4 h-4 bg-yellow-400 rounded-full -left-[9px] top-2" />
-                  <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md transition-colors duration-300">
-                    <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {education.title}
-                      </h3>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {education.duration}
-                      </span>
+    <section id="resume" className="relative py-32">
+      <div className="max-w-6xl mx-auto px-6">
+        <SectionHeader
+          eyebrow="Background"
+          title="My Journey"
+          desc="Every experience has sharpened my craft. Here's the path that brought me here."
+        />
+
+        <div className="grid md:grid-cols-2 gap-12 mt-16">
+          {columns.map(({ heading, items, Icon }) => (
+            <div key={heading}>
+              <h3
+                className="flex items-center gap-2 text-xl font-black uppercase tracking-widest mb-8"
+                style={{ color: "var(--text-muted)" }}
+              >
+                <Icon size={20} className="text-amber-400" />
+                {heading}
+              </h3>
+
+              <div className="space-y-6">
+                {items.map((item, i) => (
+                  <motion.div
+                    key={i}
+                    className="relative pl-6"
+                    style={{ borderLeft: "1px solid rgba(251,191,36,0.3)" }}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.15, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    whileHover={{ x: 4 }}
+                  >
+                    <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-amber-400 shadow-[0_0_10px_2px_rgba(251,191,36,0.5)]" />
+                    <div className="glass-card p-5 rounded-2xl">
+                      <div className="flex justify-between items-start mb-1 gap-2">
+                        <h4
+                          className="font-bold"
+                          style={{ color: "var(--text-primary)" }}
+                        >
+                          {item.title}
+                        </h4>
+                        <span
+                          className="text-xs whitespace-nowrap"
+                          style={{ color: "var(--text-muted)" }}
+                        >
+                          {item.duration}
+                        </span>
+                      </div>
+                      <p className="text-amber-400 text-sm font-semibold mb-1">
+                        {item.sub}
+                      </p>
+                      {"college" in item && item.college && (
+                        <p
+                          className="text-xs mb-2"
+                          style={{ color: "var(--text-muted)" }}
+                        >
+                          {item.college}
+                        </p>
+                      )}
+                      <p
+                        className="text-sm leading-relaxed"
+                        style={{ color: "var(--text-secondary)" }}
+                      >
+                        {item.desc}
+                      </p>
                     </div>
-                    <p className="text-yellow-400 font-medium mb-3">
-                      {education.sub}
-                    </p>
-                    <p className="text-gray-600 font-bold dark:text-gray-300 mb-3">
-                      {education.college}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {education.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-              Experience
-            </h2>
-            <div className="space-y-8">
-              {experiences.map((experience: Experience, index: number) => (
-                <motion.div
-                  key={index}
-                  className="relative pl-8 border-l-2 border-yellow-400"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ x: 5 }}
-                >
-                  <div className="absolute w-4 h-4 bg-yellow-400 rounded-full -left-[9px] top-2" />
-                  <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md transition-colors duration-300">
-                    <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {experience.title}
-                      </h3>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {experience.duration}
-                      </span>
-                    </div>
-                    <p className="text-yellow-400 font-medium mb-3">
-                      {experience.sub}
-                    </p>
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {experience.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

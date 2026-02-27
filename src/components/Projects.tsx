@@ -1,59 +1,71 @@
 import { motion } from "framer-motion";
+import { IconArrowRight } from "@tabler/icons-react";
 import { projects } from "../data";
-import { Project } from "../types";
+import type { Project } from "../types";
+import SectionHeader from "./SectionHeader";
 
 const Projects = () => {
   return (
-    <section
-      id="projects"
-      className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300"
-    >
-      <div className="container px-5 mx-auto">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-sm text-yellow-400 font-semibold tracking-wide uppercase mb-2">
-            Portfolio
-          </h2>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Recent Projects
-          </h1>
-          <p className="lg:w-2/3 mx-auto text-lg text-gray-600 dark:text-gray-300">
-            Here are some of my recent works that showcase my skills in web
-            development, design, and problem-solving.
-          </p>
-        </motion.div>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project: Project, index: number) => (
+    <section id="projects" className="relative py-32">
+      <div className="max-w-6xl mx-auto px-6">
+        <SectionHeader
+          eyebrow="Portfolio"
+          title="Selected Work"
+          desc="A curated selection of projects that demonstrate my range across design, engineering, and product thinking."
+        />
+
+        <div className="grid md:grid-cols-2 gap-6 mt-16">
+          {projects.map((project: Project, i: number) => (
             <motion.a
               href={project.link}
-              key={index}
-              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 bg-white dark:bg-gray-700"
-              initial={{ opacity: 0, y: 50 }}
+              key={i}
+              className="group project-card rounded-3xl overflow-hidden relative"
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              transition={{ delay: i * 0.1, duration: 0.7, type: "spring" }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ y: -8 }}
             >
-              <img
-                alt={project.title}
-                className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
-                src={project.image}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/95 via-gray-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                <h2 className="text-sm font-semibold text-yellow-400 mb-2">
+              {/* Image */}
+              <div className="relative h-64 overflow-hidden">
+                <motion.img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.6 }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute top-4 right-4">
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold glass-tag text-amber-400">
+                    {project.tag}
+                  </span>
+                </div>
+              </div>
+
+              {/* Body */}
+              <div className="p-6 project-card-body">
+                <div className="text-amber-400 text-xs font-semibold tracking-widest uppercase mb-2">
                   {project.subtitle}
-                </h2>
-                <h1 className="text-2xl font-bold text-white mb-3">
+                </div>
+                <h3
+                  className="text-xl font-bold mb-2"
+                  style={{ color: "var(--text-primary)" }}
+                >
                   {project.title}
-                </h1>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                </h3>
+                <p
+                  className="text-sm leading-relaxed"
+                  style={{ color: "var(--text-secondary)" }}
+                >
                   {project.description}
                 </p>
+                <motion.div
+                  className="mt-4 flex items-center gap-2 text-amber-400 text-sm font-semibold"
+                  whileHover={{ x: 5 }}
+                >
+                  View Project <IconArrowRight size={16} />
+                </motion.div>
               </div>
             </motion.a>
           ))}

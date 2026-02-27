@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─────────────────────────────────────────────
+   THEME TOKENS — light mode (default)
+───────────────────────────────────────────── */
+:root {
+  --amber: #fbbf24;
+  --amber-hover: #f59e0b;
+
+  /* backgrounds */
+  --bg-page: #f0f0f5;
+  --bg-glass: rgba(255, 255, 255, 0.55);
+  --bg-glass-hover: rgba(255, 255, 255, 0.75);
+  --bg-nav: rgba(240, 240, 245, 0.85);
+  --bg-project-body: rgba(245, 245, 250, 0.92);
+
+  /* borders */
+  --border-glass: rgba(0, 0, 0, 0.08);
+  --border-nav: rgba(0, 0, 0, 0.06);
+  --border-btn: rgba(0, 0, 0, 0.15);
+
+  /* text */
+  --text-primary: #0f0f18;
+  --text-secondary: rgba(15, 15, 24, 0.55);
+  --text-muted: rgba(15, 15, 24, 0.35);
+  --text-placeholder: rgba(15, 15, 24, 0.30);
+
+  /* form */
+  --form-bg: rgba(0, 0, 0, 0.04);
+  --form-bg-focus: rgba(0, 0, 0, 0.06);
+  --form-border: rgba(0, 0, 0, 0.10);
+
+  /* skill track */
+  --skill-track: rgba(0, 0, 0, 0.08);
+
+  /* scrollbar */
+  --scrollbar-track: #e8e8f0;
+
+  /* orbs */
+  --orb-1: rgba(251, 191, 36, 0.20);
+  --orb-2: rgba(99, 102, 241, 0.10);
+  --orb-3: rgba(251, 191, 36, 0.10);
+  --orb-4: rgba(16, 185, 129, 0.08);
+}
+
+/* ─────────────────────────────────────────────
+   THEME TOKENS — dark mode
+───────────────────────────────────────────── */
+html.dark {
+  --bg-page: #050610;
+  --bg-glass: rgba(255, 255, 255, 0.05);
+  --bg-glass-hover: rgba(255, 255, 255, 0.09);
+  --bg-nav: rgba(5, 6, 16, 0.80);
+  --bg-project-body: rgba(5, 6, 16, 0.60);
+
+  --border-glass: rgba(255, 255, 255, 0.10);
+  --border-nav: rgba(255, 255, 255, 0.08);
+  --border-btn: rgba(255, 255, 255, 0.20);
+
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.50);
+  --text-muted: rgba(255, 255, 255, 0.30);
+  --text-placeholder: rgba(255, 255, 255, 0.25);
+
+  --form-bg: rgba(255, 255, 255, 0.05);
+  --form-bg-focus: rgba(255, 255, 255, 0.08);
+  --form-border: rgba(255, 255, 255, 0.10);
+
+  --skill-track: rgba(255, 255, 255, 0.08);
+
+  --scrollbar-track: #050610;
+
+  --orb-1: rgba(251, 191, 36, 0.15);
+  --orb-2: rgba(99, 102, 241, 0.12);
+  --orb-3: rgba(251, 191, 36, 0.08);
+  --orb-4: rgba(16, 185, 129, 0.08);
+}
+
+/* ─────────────────────────────────────────────
+   BASE
+───────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+#root {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Syne', sans-serif;
+}
+
+/* ─────────────────────────────────────────────
+   FLOATING ORBS
+───────────────────────────────────────────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: float 20s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--orb-1) 0%, transparent 70%);
+  top: -200px;
+  left: -200px;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--orb-2) 0%, transparent 70%);
+  top: 40%;
+  right: -150px;
+  animation-delay: -7s;
+}
+
+.orb-3 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--orb-3) 0%, transparent 70%);
+  bottom: 10%;
+  left: 20%;
+  animation-delay: -14s;
+}
+
+.orb-4 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--orb-4) 0%, transparent 70%);
+  top: 60%;
+  left: 60%;
+  animation-delay: -3s;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -40px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────
+   GLASS UTILITIES
+───────────────────────────────────────────── */
+.glass-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background 0.4s ease, border-color 0.4s ease;
+}
+
+.glass-tag {
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.glass-btn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-btn:hover {
+  background: var(--bg-glass-hover);
+}
+
+.glass-btn-outline {
+  background: transparent;
+  border: 1px solid var(--border-btn);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.3s ease, background 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.glass-btn-outline:hover {
+  border-color: var(--amber);
+  background: rgba(251, 191, 36, 0.06);
+}
+
+/* ─────────────────────────────────────────────
+   NAVBAR
+───────────────────────────────────────────── */
+.nav-glass {
+  background: var(--bg-nav);
+  border-bottom: 1px solid var(--border-nav);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: background 0.4s ease;
+}
+
+/* ─────────────────────────────────────────────
+   NAV LINKS — adapt colour to theme
+───────────────────────────────────────────── */
+.nav-link-text {
+  color: var(--text-secondary);
+  transition: color 0.2s ease;
+}
+
+.nav-link-text:hover {
+  color: var(--amber);
+}
+
+/* Logo text */
+.logo-text {
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+/* ─────────────────────────────────────────────
+   CTA BUTTON
+───────────────────────────────────────────── */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--amber);
+  color: #0a0b14;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.cta-btn:hover {
+  background: var(--amber-hover);
+  box-shadow: 0 0 30px rgba(251, 191, 36, 0.4);
+}
+
+/* ─────────────────────────────────────────────
+   GRADIENT TEXT
+───────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fde68a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────
+   HERO IMAGE
+───────────────────────────────────────────── */
+.hero-glow-ring {
+  position: absolute;
+  inset: -16px;
+  border-radius: 2.5rem;
+  background: conic-gradient(from 0deg,
+      transparent 0%,
+      #fbbf24 25%,
+      transparent 50%,
+      #6366f1 75%,
+      transparent 100%);
+  animation: spin 8s linear infinite;
+  z-index: -1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-img-wrap {
+  position: relative;
+}
+
+.hero-img-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────
+   PROJECT CARDS
+───────────────────────────────────────────── */
+.project-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  backdrop-filter: blur(12px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.4s ease;
+}
+
+.project-card:hover {
+  border-color: rgba(251, 191, 36, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(251, 191, 36, 0.1);
+}
+
+.project-card-body {
+  background: var(--bg-project-body);
+  transition: background 0.4s ease;
+}
+
+/* ─────────────────────────────────────────────
+   SKILL BARS
+───────────────────────────────────────────── */
+.skill-bar-track {
+  height: 6px;
+  background: var(--skill-track);
+  transition: background 0.4s ease;
+}
+
+.skill-bar-fill {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.4);
+}
+
+.skill-bar-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   FORM INPUTS
+───────────────────────────────────────────── */
+.form-input {
+  background: var(--form-bg);
+  border: 1px solid var(--form-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  width: 100%;
+}
+
+.form-input::placeholder {
+  color: var(--text-placeholder);
+}
+
+.form-input:focus {
+  border-color: rgba(251, 191, 36, 0.55);
+  background: var(--form-bg-focus);
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.12);
+}
+
+.form-input.form-input-icon {
+  padding-left: 42px;
+}
+
+.form-input.border-red-500 {
+  border-color: #ef4444 !important;
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(251, 191, 36, 0.35);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(251, 191, 36, 0.55);
+}
+
+/* ─────────────────────────────────────────────
+   SELECTION
+───────────────────────────────────────────── */
+::selection {
+  background: rgba(251, 191, 36, 0.25);
+  color: var(--text-primary);
+}

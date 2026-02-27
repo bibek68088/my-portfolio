@@ -1,14 +1,15 @@
+export interface Skill {
+  title: string;
+  progress: number;
+}
+
 export interface Project {
   title: string;
   subtitle: string;
   description: string;
   image: string;
   link: string;
-}
-
-export interface Skill {
-  title: string;
-  progress: string;
+  tag: string;
 }
 
 export interface Education {
@@ -24,11 +25,4 @@ export interface Experience {
   sub: string;
   duration: string;
   desc: string;
-}
-
-export interface Testimonial {
-  quote: string;
-  name: string;
-  company: string;
-  image: string;
 }
