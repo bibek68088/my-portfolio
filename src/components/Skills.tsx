@@ -5,21 +5,21 @@ import SectionHeader from "./SectionHeader";
 
 // ─── Layout ───────────────────────────────────────────────────────────────────
 const POSITIONS = [
-  { cx: "28%", cy: "20%" },
-  { cx: "68%", cy: "16%" },
-  { cx: "50%", cy: "46%" },
-  { cx: "16%", cy: "62%" },
-  { cx: "80%", cy: "56%" },
-  { cx: "42%", cy: "82%" },
+  { cx: "24%", cy: "20%" },
+  { cx: "63%", cy: "15%" },
+  { cx: "50%", cy: "47%" },
+  { cx: "19%", cy: "65%" },
+  { cx: "72%", cy: "57%" },
+  { cx: "43%", cy: "83%" },
 ];
 
 const FLOAT = [
-  { x: [0, 8, -4, 0], y: [0, -10, 6, 0], dur: 7 },
-  { x: [0, -6, 8, 0], y: [0, 8, -6, 0], dur: 8 },
-  { x: [0, 5, -8, 0], y: [0, -8, 10, 0], dur: 6 },
-  { x: [0, -8, 4, 0], y: [0, 6, -8, 0], dur: 9 },
-  { x: [0, 6, -5, 0], y: [0, -12, 5, 0], dur: 7.5 },
-  { x: [0, -4, 9, 0], y: [0, 5, -9, 0], dur: 8.5 },
+  { x: [0, 6, -3, 0], y: [0, -8, 5, 0], dur: 7 },
+  { x: [0, -5, 6, 0], y: [0, 7, -5, 0], dur: 8 },
+  { x: [0, 4, -6, 0], y: [0, -7, 8, 0], dur: 6 },
+  { x: [0, -6, 3, 0], y: [0, 5, -6, 0], dur: 9 },
+  { x: [0, 5, -4, 0], y: [0, -9, 4, 0], dur: 7.5 },
+  { x: [0, -3, 7, 0], y: [0, 4, -7, 0], dur: 8.5 },
 ];
 
 const getLevel = (p: number) => {
@@ -29,11 +29,10 @@ const getLevel = (p: number) => {
   return { label: "Intermediate", color: "#f472b6" };
 };
 
-// ─── Tooltip anchored to the bubble ──────────────────────────────────────────
+// ─── Tooltip ─────────────────────────────────────────────────────────────────
 interface TooltipProps {
   skill: { title: string; progress: number };
   r: number;
-  /** which quadrant the bubble is in, so tooltip doesn't go off-screen */
   quadrant: "top" | "bottom";
 }
 
@@ -83,7 +82,6 @@ const BubbleTooltip = ({ skill, r, quadrant }: TooltipProps) => {
           </span>
         </div>
       </div>
-      {/* Small arrow */}
       <div
         className="absolute left-1/2"
         style={{
@@ -116,7 +114,11 @@ const Skills = () => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <section id="skills" className="relative py-32">
+    <section
+      id="skills"
+      className="relative py-32"
+      style={{ overflowX: "hidden" }}
+    >
       <div className="max-w-5xl mx-auto px-6">
         <SectionHeader
           eyebrow="Expertise"
@@ -124,9 +126,12 @@ const Skills = () => {
           desc="Always learning, always shipping. These are the tools I reach for first."
         />
 
-        {/* ── Bubble stage — fixed height so legend is never overlapped ── */}
-        <div ref={ref} className="relative mt-16" style={{ height: 500 }}>
-          {/* Ambient backdrop */}
+        {/* ── Bubble stage ── */}
+        <div
+          ref={ref}
+          className="relative mt-16"
+          style={{ height: 500, width: "100%", overflow: "hidden" }}
+        >
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -139,9 +144,8 @@ const Skills = () => {
             const pos = POSITIONS[i];
             const float = FLOAT[i];
             const { color } = getLevel(skill.progress);
-            const r = 44 + (skill.progress / 100) * 36; // 44–80 px
+            const r = 38 + (skill.progress / 100) * 22;
             const isHov = hovered === i;
-            // Decide tooltip direction: bubbles in the bottom 40% get tooltip above
             const cyNum = parseFloat(pos.cy);
             const quadrant: "top" | "bottom" = cyNum > 55 ? "top" : "bottom";
 
@@ -152,7 +156,10 @@ const Skills = () => {
                 style={{
                   left: pos.cx,
                   top: pos.cy,
-                  transform: "translate(-50%, -50%)",
+                  // Use margin instead of transform translate so Framer Motion's
+                  // own transform system (used for x/y animation) doesn't override it
+                  marginLeft: -r,
+                  marginTop: -r,
                   width: r * 2,
                   height: r * 2,
                   zIndex: isHov ? 30 : 10,
@@ -187,7 +194,7 @@ const Skills = () => {
                 }}
                 onHoverStart={() => setHovered(i)}
                 onHoverEnd={() => setHovered(null)}
-                whileHover={{ scale: 1.14 }}
+                whileHover={{ scale: 1.12 }}
               >
                 {/* Glow ring */}
                 <div
@@ -212,7 +219,6 @@ const Skills = () => {
                   }}
                 />
 
-                {/* Centre label — hidden on hover so tooltip takes over */}
                 <AnimatePresence>
                   {!isHov && (
                     <motion.div
@@ -223,14 +229,14 @@ const Skills = () => {
                     >
                       <span
                         className="font-black leading-none"
-                        style={{ color, fontSize: r > 65 ? 22 : 18 }}
+                        style={{ color, fontSize: r > 55 ? 20 : 16 }}
                       >
                         {skill.progress}%
                       </span>
                       <span
                         className="font-semibold mt-1 leading-tight"
                         style={{
-                          fontSize: r > 65 ? 11 : 10,
+                          fontSize: r > 55 ? 10 : 9,
                           color: "var(--text-primary)",
                           maxWidth: r * 1.4,
                         }}
@@ -282,5 +288,4 @@ const Skills = () => {
     </section>
   );
 };
-
 export default Skills;
