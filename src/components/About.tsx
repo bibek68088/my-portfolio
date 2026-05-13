@@ -92,7 +92,7 @@ const About = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            Full-stack developer based in Kathmandu. I transform ideas into
+            Full-stack developer based in Peterborough. I transform ideas into
             pixel-perfect, performant digital experiences that users love.
           </motion.p>
 
@@ -188,7 +188,7 @@ const About = () => {
                 className="text-sm font-bold"
                 style={{ color: "var(--text-primary)" }}
               >
-                🇳🇵 Kathmandu
+                Peterborough, UK
               </div>
             </motion.div>
             <motion.div

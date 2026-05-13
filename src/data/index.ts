@@ -63,9 +63,9 @@ export const educations: Education[] = [
   {
     title: "+2 Science",
     sub: "NEB",
-    college: "Kathmandu Model College",
+    college: "NASA International College",
     duration: "2018 – 2020",
-    desc: "Physics, Chemistry, Mathematics — laid a strong analytical foundation.",
+    desc: "Physics, Chemistry, Mathematics - laid a strong analytical foundation.",
   },
 ];
 
@@ -73,7 +73,7 @@ export const experiences: Experience[] = [
   {
     title: "Frontend Developer",
     sub: "SGDG, Nepal",
-    duration: "2024 – Present",
+    duration: "2024 – 2026",
     desc: "Building performant React applications, design systems, and collaborating with cross-functional teams.",
   },
 ];

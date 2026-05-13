@@ -48,8 +48,8 @@ type Status = "idle" | "sending" | "success" | "error";
 
 // ─── Static data ───────────────────────────────────────────────────────────
 const contactInfo = [
-  { Icon: IconMapPin, label: "Location", value: "New Baneshwor-10, Kathmandu" },
-  { Icon: IconPhone, label: "Phone", value: "+977 980-867 2095" },
+  { Icon: IconMapPin, label: "Location", value: "Peterborough PE3 7HD, UK" },
+  { Icon: IconPhone, label: "Phone", value: "+44 4375 133314" },
   { Icon: IconMail, label: "Email", value: "bibeks337@gmail.com" },
 ];
 
